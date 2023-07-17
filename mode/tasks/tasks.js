@@ -386,14 +386,4 @@
   });
 
   CodeMirror.defineMIME("text/x-tasks", "tasks");
-
-  var words = function(str) { return str.split(" "); };
-
-  CodeMirror.defineMIME("text/x-cython", {
-    name: "tasks",
-    extra_keywords: words("by cdef cimport cpdef ctypedef enum except "+
-                          "extern gil include nogil property public "+
-                          "readonly struct union DEF IF ELIF ELSE")
-  });
-
 });

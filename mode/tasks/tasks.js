@@ -19,6 +19,7 @@
   var commonKeywords = [
     "backlink",
     "created",
+    "date",
     "description",
     "done",
     "due",

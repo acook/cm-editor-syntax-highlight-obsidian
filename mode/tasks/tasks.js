@@ -56,21 +56,13 @@
     if (parserConf.extra_builtins != undefined)
       myBuiltins = myBuiltins.concat(parserConf.extra_builtins);
 
-    var py3 = !(parserConf.version && Number(parserConf.version) < 3)
-    if (py3) {
-      // since http://legacy.python.org/dev/peps/pep-0465/ @ is also an operator
-      var identifiers = parserConf.identifiers|| /^[_A-Za-z\u00A1-\uFFFF][_A-Za-z0-9\u00A1-\uFFFF]*/;
-      myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await"]);
-      myBuiltins = myBuiltins.concat(["ascii", "bytes", "exec", "print"]);
-      var stringPrefixes = new RegExp("^(([rbuf]|(br)|(fr))?('{3}|\"{3}|['\"]))", "i");
-    } else {
-      var identifiers = parserConf.identifiers|| /^[_A-Za-z][_A-Za-z0-9]*/;
-      myKeywords = myKeywords.concat(["exec", "print"]);
-      myBuiltins = myBuiltins.concat(["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
-                                      "file", "intern", "long", "raw_input", "reduce", "reload",
-                                      "unichr", "unicode", "xrange", "False", "True", "None"]);
-      var stringPrefixes = new RegExp("^(([rubf]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
-    }
+    var identifiers = parserConf.identifiers || /^[_A-Za-z][_A-Za-z0-9]*/;
+    myKeywords = myKeywords.concat(["exec", "print"]);
+    myBuiltins = myBuiltins.concat(["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
+      "file", "intern", "long", "raw_input", "reduce", "reload",
+      "unichr", "unicode", "xrange", "False", "True", "None"]);
+    var stringPrefixes = new RegExp("^(([rubf]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
+
     var keywords = wordRegexp(myKeywords);
     var builtins = wordRegexp(myBuiltins);
 
@@ -305,7 +297,7 @@
 
       // Handle decorators
       if (state.beginningOfLine && current == "@")
-        return stream.match(identifiers, false) ? "meta" : py3 ? "operator" : ERRORCLASS;
+        return stream.match(identifiers, false) ? "meta" : ERRORCLASS;
 
       if (/\S/.test(current)) state.beginningOfLine = false;
 

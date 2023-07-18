@@ -81,7 +81,7 @@
     CodeMirror.defineMode('tasks', function (conf, parserConf) {
         const ERRORCLASS = 'error';
 
-        const delimiters = parserConf.delimiters || parserConf.singleDelimiters || /^[\(\)\[\]\{\}@,:`=;\.\\]/;
+        const delimiters = parserConf.delimiters || parserConf.singleDelimiters || /^[()\[\]{}@,:`=;.\\]/;
         //               (Backwards-compatibility with old, cumbersome config system)
         const operators = [parserConf.singleOperators, parserConf.doubleOperators, parserConf.doubleDelimiters, parserConf.tripleDelimiters,
             parserConf.operators || /^([-+*/%\/&|^]=?|[<>=]+|\/\/=?|\*\*=?|!=|[~!@]|\.\.\.)/];

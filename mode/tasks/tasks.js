@@ -384,7 +384,7 @@
             return style;
         }
 
-        const external = {
+        return {
             startState: function (basecolumn) {
                 return {
                     tokenize: tokenBase,
@@ -426,7 +426,6 @@
             lineComment: '#',
             fold: 'indent'
         };
-        return external;
     });
 
     CodeMirror.defineMIME('text/x-tasks', 'tasks');

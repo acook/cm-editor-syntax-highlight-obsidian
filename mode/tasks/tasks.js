@@ -90,10 +90,10 @@
         const hangingIndent = parserConf.hangingIndent || conf.indentUnit;
 
         let myKeywords = commonKeywords, myBuiltins = commonBuiltins;
-        if (parserConf.extra_keywords != undefined)
+        if (parserConf.extra_keywords !== undefined)
             myKeywords = myKeywords.concat(parserConf.extra_keywords);
 
-        if (parserConf.extra_builtins != undefined)
+        if (parserConf.extra_builtins !== undefined)
             myBuiltins = myBuiltins.concat(parserConf.extra_builtins);
 
         const identifiers = parserConf.identifiers || /^[_A-Za-z][_A-Za-z0-9]*/;
@@ -108,16 +108,16 @@
 
         // tokenizers
         function tokenBase(stream, state) {
-            const sol = stream.sol() && state.lastToken != '\\';
+            const sol = stream.sol() && state.lastToken !== '\\';
             if (sol) state.indent = stream.indentation()
             // Handle scope changes
-            if (sol && top(state).type == 'py') {
+            if (sol && top(state).type === 'py') {
                 const scopeOffset = top(state).offset;
                 if (stream.eatSpace()) {
                     const lineOffset = stream.indentation();
                     if (lineOffset > scopeOffset)
                         pushPyScope(state);
-                    else if (lineOffset < scopeOffset && dedent(stream, state) && stream.peek() != '#')
+                    else if (lineOffset < scopeOffset && dedent(stream, state) && stream.peek() !== '#')
                         state.errorToken = true;
                     return null;
                 } else {
@@ -195,7 +195,7 @@
 
             if (stream.match(delimiters)) return 'punctuation';
 
-            if (state.lastToken == '.' && stream.match(identifiers))
+            if (state.lastToken === '.' && stream.match(identifiers))
                 return 'property';
 
             if (stream.match(keywords) || stream.match(wordOperators))
@@ -208,7 +208,7 @@
                 return 'variable-2';
 
             if (stream.match(identifiers)) {
-                if (state.lastToken == 'def' || state.lastToken == 'class')
+                if (state.lastToken === 'def' || state.lastToken === 'class')
                     return 'def';
                 return 'variable';
             }
@@ -222,16 +222,16 @@
             while ('rubf'.indexOf(delimiter.charAt(0).toLowerCase()) >= 0)
                 delimiter = delimiter.substr(1);
 
-            const singleline = delimiter.length == 1;
+            const singleline = delimiter.length === 1;
             const OUTCLASS = 'string';
 
             function tokenNestedExpr(depth) {
                 return function (stream, state) {
                     const inner = tokenBaseInner(stream, state, true);
-                    if (inner == 'punctuation') {
-                        if (stream.current() == '{') {
+                    if (inner === 'punctuation') {
+                        if (stream.current() === '{') {
                             state.tokenize = tokenNestedExpr(depth + 1)
-                        } else if (stream.current() == '}') {
+                        } else if (stream.current() === '}') {
                             if (depth > 1) state.tokenize = tokenNestedExpr(depth - 1)
                             else state.tokenize = tokenString
                         }
@@ -284,7 +284,7 @@
             while ('rubf'.indexOf(delimiter.charAt(0).toLowerCase()) >= 0)
                 delimiter = delimiter.substr(1);
 
-            const singleline = delimiter.length == 1;
+            const singleline = delimiter.length === 1;
             const OUTCLASS = 'string';
 
             function tokenString(stream, state) {
@@ -315,7 +315,7 @@
         }
 
         function pushPyScope(state) {
-            while (top(state).type != 'py') state.scopes.pop()
+            while (top(state).type !== 'py') state.scopes.pop()
             state.scopes.push({
                 offset: top(state).offset + conf.indentUnit,
                 type: 'py',
@@ -335,10 +335,10 @@
         function dedent(stream, state) {
             const indented = stream.indentation();
             while (state.scopes.length > 1 && top(state).offset > indented) {
-                if (top(state).type != 'py') return true;
+                if (top(state).type !== 'py') return true;
                 state.scopes.pop();
             }
-            return top(state).offset != indented;
+            return top(state).offset !== indented;
         }
 
         function tokenLexer(stream, state) {
@@ -348,35 +348,35 @@
             const current = stream.current();
 
             // Handle decorators
-            if (state.beginningOfLine && current == '@')
+            if (state.beginningOfLine && current === '@')
                 return stream.match(identifiers, false) ? 'meta' : ERRORCLASS;
 
             if (/\S/.test(current)) state.beginningOfLine = false;
 
-            if ((style == 'variable' || style == 'builtin')
-                && state.lastToken == 'meta')
+            if ((style === 'variable' || style === 'builtin')
+                && state.lastToken === 'meta')
                 style = 'meta';
 
             // Handle scope changes.
-            if (current == 'pass' || current == 'return')
+            if (current === 'pass' || current === 'return')
                 state.dedent += 1;
 
-            if (current == 'lambda') state.lambda = true;
-            if (current == ':' && !state.lambda && top(state).type == 'py')
+            if (current === 'lambda') state.lambda = true;
+            if (current === ':' && !state.lambda && top(state).type === 'py')
                 pushPyScope(state);
 
-            if (current.length == 1 && !/string|comment/.test(style)) {
+            if (current.length === 1 && !/string|comment/.test(style)) {
                 let delimiter_index = '[({'.indexOf(current);
-                if (delimiter_index != -1)
+                if (delimiter_index !== -1)
                     pushBracketScope(stream, state, '])}'.slice(delimiter_index, delimiter_index + 1));
 
                 delimiter_index = '])}'.indexOf(current);
-                if (delimiter_index != -1) {
-                    if (top(state).type == current) state.indent = state.scopes.pop().offset - hangingIndent
+                if (delimiter_index !== -1) {
+                    if (top(state).type === current) state.indent = state.scopes.pop().offset - hangingIndent
                     else return ERRORCLASS;
                 }
             }
-            if (state.dedent > 0 && stream.eol() && top(state).type == 'py') {
+            if (state.dedent > 0 && stream.eol() && top(state).type === 'py') {
                 if (state.scopes.length > 1) state.scopes.pop();
                 state.dedent -= 1;
             }
@@ -401,9 +401,9 @@
                 if (addErr) state.errorToken = false;
                 let style = tokenLexer(stream, state);
 
-                if (style && style != 'comment')
-                    state.lastToken = (style == 'keyword' || style == 'punctuation') ? stream.current() : style;
-                if (style == 'punctuation') style = null;
+                if (style && style !== 'comment')
+                    state.lastToken = (style === 'keyword' || style === 'punctuation') ? stream.current() : style;
+                if (style === 'punctuation') style = null;
 
                 if (stream.eol() && state.lambda)
                     state.lambda = false;
@@ -411,10 +411,10 @@
             },
 
             indent: function (state, textAfter) {
-                if (state.tokenize != tokenBase)
+                if (state.tokenize !== tokenBase)
                     return state.tokenize.isString ? CodeMirror.Pass : 0;
 
-                const scope = top(state), closing = scope.type == textAfter.charAt(0);
+                const scope = top(state), closing = scope.type === textAfter.charAt(0);
                 if (scope.align != null)
                     return scope.align - (closing ? 1 : 0)
                 else

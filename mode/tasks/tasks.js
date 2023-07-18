@@ -85,7 +85,7 @@
         //               (Backwards-compatibility with old, cumbersome config system)
         const operators = [parserConf.singleOperators, parserConf.doubleOperators, parserConf.doubleDelimiters, parserConf.tripleDelimiters,
             parserConf.operators || /^([-+*/%\/&|^]=?|[<>=]+|\/\/=?|\*\*=?|!=|[~!@]|\.\.\.)/];
-        for (var i = 0; i < operators.length; i++) if (!operators[i]) operators.splice(i--, 1)
+        for (let i = 0; i < operators.length; i++) if (!operators[i]) operators.splice(i--, 1)
 
         const hangingIndent = parserConf.hangingIndent || conf.indentUnit;
 
@@ -190,8 +190,8 @@
                 }
             }
 
-            for (let i = 0; i < operators.length; i++)
-                if (stream.match(operators[i])) return 'operator'
+            for (const element of operators)
+                if (stream.match(element)) return 'operator'
 
             if (stream.match(delimiters)) return 'punctuation';
 

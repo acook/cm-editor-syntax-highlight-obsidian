@@ -1,4 +1,14 @@
 # Editor Syntax Highlight Obsidian Plugin
+
+## ⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️
+This repo is not being actively maintained and currently functions as a way for me to include whatever highlighting I want, because it's pretty clear that deathau just isn't working on the repo anymore. That said, maybe someone should revive this project?
+
+Current changes
+- **nasm**, courtesy [felpofo](https://github.com/felpofo/cm-editor-syntax-highlight-obsidian/tree/nasm)
+- **Windows Batch Script**, courtesy [FranzDeschler](https://github.com/codemirror/codemirror5/issues/5497#issuecomment-1001492806)
+
+## Intro
+
 A plugin for [Obsidian](https://obsidian.md) which allows syntax highlighting for code blocks in the editor.
 
 ![Screenshot](https://github.com/deathau/cm-editor-syntax-highlight-obsidian/raw/main/screenshot.png)

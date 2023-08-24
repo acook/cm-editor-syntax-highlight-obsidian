@@ -1,6 +1,10 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/LICENSE
 
+// TODO See if Simple Mode is viable for Tasks syntax
+// CodeMirror.defineSimpleMode()
+// https://codemirror.net/5/demo/simplemode.html
+
 (function (mod) {
     if (typeof exports == 'object' && typeof module == 'object') // CommonJS
         mod(require('../../lib/codemirror'));

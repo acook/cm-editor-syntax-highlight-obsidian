@@ -3,7 +3,7 @@
   "name": "Live Editor Syntax Highlight",
   "author": "acook",
   "authorUrl": "https://github.com/acook",
-  "description": "Improve syntax highlighing in live editor code blocks",
+  "description": "Add additional syntax highlighting languages to live editor code blocks",
   "isDesktopOnly": false,
   "version": "0.1.4",
   "minAppVersion": "0.10.0"

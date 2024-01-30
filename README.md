@@ -5,8 +5,8 @@ This repo is not being actively maintained and currently functions as a way for 
 
 Current changes
 - **nasm**, courtesy [felpofo](https://github.com/felpofo/cm-editor-syntax-highlight-obsidian/tree/nasm)
-- **Windows Batch Script**, courtesy [FranzDeschler](https://github.com/codemirror/codemirror5/issues/5497#issuecomment-1001492806)
 - **Fish Shell**, via [jglanz](https://github.com/jglanz/fork-obsidian-cm-editor-syntax-highlight-obsidian)
+- **Coq, Agda, Lean**, courtesy [FrederickPu](https://github.com/FreddyFozzyFilms/cm-editor-syntax-highlight-obsidian/commit/ee603524335fdae8bed28d8838bf9dbe23f77c09)
 
 ## Intro
 

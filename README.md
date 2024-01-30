@@ -8,17 +8,17 @@ This plugin adds *many* new languages to Obsidian's syntax highlighting code blo
 - **Fish Shell**, via [jglanz](https://github.com/jglanz/fork-obsidian-cm-editor-syntax-highlight-obsidian)
 - **Coq, Agda, Lean**, courtesy [FrederickPu](https://github.com/FreddyFozzyFilms/cm-editor-syntax-highlight-obsidian/commit/ee603524335fdae8bed28d8838bf9dbe23f77c09)
 
-## Intro
+## Screenshot
 
 ![Screenshot](https://github.com/deathau/cm-editor-syntax-highlight-obsidian/raw/main/screenshot.png)
-
-Imports code from [CodeMirror](https://github.com/codemirror/CodeMirror/)
 
 ### Compatibility
 
 Custom plugins are only available for Obsidian v0.9.7+.
 
 The current API of this repo targets Obsidian **v0.9.7**. 
+
+Imports code from [CodeMirror](https://github.com/codemirror/CodeMirror/)
 
 ### Notes
 This is all very expermental at the moment, so parts might not work, etc.

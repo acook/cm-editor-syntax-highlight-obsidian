@@ -1,16 +1,14 @@
-# Editor Syntax Highlight Obsidian Plugin
+# Live Editor Syntax Highlight Languages
 
-## ⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️
-This repo is not being actively maintained and currently functions as a way for me to include whatever highlighting I want, because it's pretty clear that deathau just isn't working on the repo anymore. That said, maybe someone should revive this project?
+This plugin adds *many* new languages to Obsidian's syntax highlighting code block feature. 
 
-Current changes
+## Differences from deathau's Version
+
 - **nasm**, courtesy [felpofo](https://github.com/felpofo/cm-editor-syntax-highlight-obsidian/tree/nasm)
 - **Fish Shell**, via [jglanz](https://github.com/jglanz/fork-obsidian-cm-editor-syntax-highlight-obsidian)
 - **Coq, Agda, Lean**, courtesy [FrederickPu](https://github.com/FreddyFozzyFilms/cm-editor-syntax-highlight-obsidian/commit/ee603524335fdae8bed28d8838bf9dbe23f77c09)
 
 ## Intro
-
-A plugin for [Obsidian](https://obsidian.md) which allows syntax highlighting for code blocks in the editor.
 
 ![Screenshot](https://github.com/deathau/cm-editor-syntax-highlight-obsidian/raw/main/screenshot.png)
 
